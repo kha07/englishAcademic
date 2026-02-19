@@ -10,8 +10,20 @@
   "text": "This is my bio where I describe my current role, future goals, and research interests.",
   "roles": [
     {
-      "role": "Role Name",
-      "institution": "Institution Name"
+      "role": "Associate Director",
+      "institution": "SUNY Cortland"
+    },
+    {
+      "role": "Job Title",
+      "institution": "Company Name"
+    },
+    {
+      "role": "Job Title",
+      "institution": "Company Name"
+    },
+    {
+      "role": "Job Title",
+      "institution": "Company Name"
     },
     {
       "role": "Job Title",
