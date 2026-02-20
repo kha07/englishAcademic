@@ -15,32 +15,36 @@ function applyThemeFromPreferences(theme) {
   const root = document.documentElement;
   const c = theme.colors || {};
 
-  // Map JSON keys → CSS variables (supports your current variable names)
-  const map = {
-    background: '--background-color',
-    default: '--default-color',
-    heading: '--heading-color',
-    accent: '--accent-color',
-    surface: '--surface-color',
-    contrast: '--contrast-color',
-
-    nav: '--nav-color',
-    navHover: '--nav-hover-color',
-    navMobileBg: '--nav-bg', // new shorter token
-
-    // optional extras
-    mutedText: '--muted-text-color',
-    softText: '--soft-text-color',
-    border: '--border-color',
-    tileBg: '--tile-bg',
-    badgeBg: '--badge-bg',
-    heroOverlayStart: '--hero-overlay-start',
-    heroOverlayEnd: '--hero-overlay-end'
+  const apply = (keys, vars) => {
+    const value = keys.map((key) => c[key]).find(Boolean);
+    if (!value) return;
+    vars.forEach((cssVar) => root.style.setProperty(cssVar, value));
   };
 
-  Object.entries(map).forEach(([key, cssVar]) => {
-    if (c[key]) root.style.setProperty(cssVar, c[key]);
-  });
+  // Descriptive keys (preferred) + legacy keys (fallback)
+  apply(['pageBg', 'background'], ['--page-bg', '--background-color', '--color-bg']);
+  apply(['surface', 'surfaceBg'], ['--surface-color', '--color-surface']);
+  apply(['surfaceAlt', 'surfaceAltBg', 'tileBg'], ['--surface-alt-color', '--color-surface-2', '--tile-bg']);
+  apply(['textBody', 'default'], ['--text-color', '--default-color', '--color-text']);
+  apply(['textHeading', 'heading'], ['--heading-color', '--color-heading']);
+  apply(['textMuted', 'mutedText'], ['--text-muted-color', '--muted-text-color', '--color-text-muted']);
+  apply(['textSubtle', 'softText'], ['--text-subtle-color', '--soft-text-color', '--color-text-subtle']);
+  apply(['border'], ['--border-color', '--color-border']);
+
+  apply(['accent'], ['--accent-color', '--bright-accent']);
+  apply(['accentOn', 'contrast'], ['--accent-contrast-color', '--contrast-color', '--color-on-accent']);
+
+  apply(['navText', 'nav'], ['--nav-text-color', '--nav-color']);
+  apply(['navTextHover', 'navHover'], ['--nav-text-hover-color', '--nav-hover-color']);
+  apply(['navBg', 'navPanelBg', 'navMobileBg'], ['--nav-bg-color', '--nav-bg', '--dark-accent']);
+  apply(['navToggleBg'], ['--nav-toggle-bg-color']);
+
+  apply(['footerBg'], ['--footer-bg-color']);
+  apply(['sectionAltBg'], ['--section-alt-bg', '--section-alt-bg-color']);
+
+  apply(['badgeBg'], ['--badge-bg']);
+  apply(['heroOverlayStart'], ['--hero-overlay-start']);
+  apply(['heroOverlayEnd'], ['--hero-overlay-end']);
 }
 
 function setSectionHeadings(sections) {
