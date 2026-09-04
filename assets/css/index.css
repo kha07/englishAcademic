@@ -1,38 +1,19 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
   background: white;
-  color: white;
-}
-
-.top-label {
-  position: absolute;
-  top: 12px;
-  left: 20px;
-  z-index: 2;
-  font-size: 14px;
+  color: black;
+  font-family: Arial, sans-serif;
 }
 
 header {
-  height: 245px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #2f3a3f;
+  padding: 20px;
 }
 
 header h1 {
   margin: 0;
-  font-size: 58px;
-  font-weight: 300;
-  letter-spacing: 2px;
+  font-size: 32px;
 }
 
 main {
-  min-height: calc(100vh - 245px);
-  background: white;
+  display: none;
 }
