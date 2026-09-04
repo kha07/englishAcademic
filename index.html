@@ -7,10 +7,26 @@
   <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
+  <div class="cursor-glow"></div>
+
   <header>
     <h1>Khalid Al-husseieni</h1>
   </header>
 
   <main></main>
+
+  <script>
+    const glow = document.querySelector('.cursor-glow');
+
+    document.addEventListener('mousemove', (event) => {
+      glow.style.left = event.clientX + 'px';
+      glow.style.top = event.clientY + 'px';
+      glow.style.opacity = '1';
+    });
+
+    document.addEventListener('mouseleave', () => {
+      glow.style.opacity = '0';
+    });
+  </script>
 </body>
 </html>
